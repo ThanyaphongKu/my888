@@ -1,0 +1,164 @@
+import React, { useEffect } from "react";
+import p from "./assets/P.jpg";
+import { MousePointerClick, Smartphone, ShieldCheck } from "lucide-react";
+
+const HomePage = () => {
+  useEffect(() => {
+    const sections = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-y-0");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    sections.forEach(section => {
+      section.classList.add(
+        "opacity-0",
+        "translate-y-4",
+        "transition-all",
+        "duration-700"
+      );
+      observer.observe(section);
+    });
+  }, []);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-100 via-white to-green-100 scroll-smooth relative">
+      {/* Gradient Blob */}
+      <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-green-200 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse -z-10" />
+      <div className="absolute bottom-10 right-0 w-[250px] h-[250px] bg-green-300 rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-pulse -z-10" />
+
+      {/* Navbar */}
+      <header className="bg-white px-8 py-5 flex justify-between items-center shadow-md border-b sticky top-0 z-50 ">
+        <div className="text-2xl font-bold text-green-700">SOF888</div>
+        <nav className="flex gap-8 text-green-800 font-medium">
+          <a href="#home" className="hover:text-green-600 transition">หน้าหลัก</a>
+          <a href="#features" className="hover:text-green-600 transition">แพ็คเกจ</a>
+          <a href="#testimonials" className="hover:text-green-600 transition">รีวิว</a>
+          <a href="#login" className="hover:text-green-600 transition flex items-center gap-1">เข้าสู่ระบบ</a>
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <main id="home" className="flex flex-col items-center justify-center px-3 py-1 gap-1 min-h-screen">
+        <div className="relative w-full h-[2048px] lg:h-[800px] rounded-3xl overflow-hidden shadow-lg border border-green-200 fade-in">
+          <img src={p} alt="Creative Web Design" className="absolute w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black bg-opacity-40 z-0" />
+          <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
+            <h1 className="text-3xl md:text-4xl font-bold mb-2">LET US CAPTURE EVERY MEMORY OF YOURS THAT IS MEANINGFUL IN YOUR LIFE.</h1>
+            <p className="text-lg md:text-3xl mb-4">ทุกความทรงจำของคุณให้เราได้เก็บภาพที่มีความหมายในช่วงชีวิตของคุณ</p>
+            <button className="fade-in bg-green-500 hover:bg-green-600 text-white text-lg font-semibold px-10 py-3 rounded-full shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-105 flex items-center gap-2">
+              <span>รายการแพ็คเกจทั้งหมด</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </main>
+
+      {/* Why Us Section */}
+      <section id="whyus" className="py-20 bg-white border-t border-green-200">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-green-700 mb-8 fade-in">ทำไมต้องเลือกเรา</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[{
+              icon: <MousePointerClick className="mx-auto text-green-500 mb-2" size={36} />,
+              title: "ใช้งานง่าย",
+              desc: "ออกแบบให้เหมาะกับผู้ใช้งานทุกระดับ ไม่ซับซ้อน"
+            }, {
+              icon: <Smartphone className="mx-auto text-green-500 mb-2" size={36} />,
+              title: "รองรับทุกอุปกรณ์",
+              desc: "เข้าถึงได้ทั้งจากมือถือ แท็บเล็ต และคอมพิวเตอร์"
+            }, {
+              icon: <ShieldCheck className="mx-auto text-green-500 mb-2" size={36} />,
+              title: "ระบบทันสมัย",
+              desc: "พัฒนาโดยใช้เทคโนโลยีใหม่ล่าสุด พร้อมความปลอดภัยสูง"
+            }].map(({ icon, title, desc }, i) => (
+              <div key={i} className="fade-in p-6 rounded-2xl shadow-md border border-gray-200 text-center hover:shadow-xl transform hover:-translate-y-1 transition-transform duration-300">
+                {icon}
+                <h3 className="text-xl font-semibold text-green-600 mb-2">{title}</h3>
+                <p className="text-gray-600">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Packages Section */}
+      <section id="features" className="py-20 bg-white border-t border-green-200">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-green-700 mb-8 fade-in">แพ็คเกจแนะนำ</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[{
+              img: "https://source.unsplash.com/featured/?wedding",
+              title: "แพ็คเกจพรีเวดดิ้ง",
+              desc: "ถ่ายภาพในสตูดิโอหรือสถานที่ธรรมชาติ พร้อมแต่งหน้า",
+              price: "฿4,500",
+              link: "/packages/1"
+            }, {
+              img: "https://source.unsplash.com/featured/?graduation",
+              title: "แพ็คเกจรับปริญญา",
+              desc: "ถ่ายภาพบัณฑิต ทั้งในและนอกสถานที่",
+              price: "฿2,500",
+              link: "/packages/2"
+            }, {
+              img: "https://source.unsplash.com/featured/?family,portrait",
+              title: "แพ็คเกจครอบครัว",
+              desc: "ถ่ายภาพครอบครัวหรือเด็กในสตูดิโอ พร้อมพร็อพ",
+              price: "฿3,200",
+              link: "/packages/3"
+            }].map(({ img, title, desc, price, link }, i) => (
+              <div key={i} className="fade-in p-6 rounded-2xl shadow-md border border-gray-200 text-left">
+                <img src={img} alt={title} className="w-full h-48 object-cover rounded-xl mb-4" />
+                <h3 className="text-xl font-semibold text-green-600 mb-1">{title}</h3>
+                <p className="text-gray-600 mb-2">{desc}</p>
+                <p className="text-green-500 font-bold mb-3">{price}</p>
+                <a href={link} className="inline-block bg-gradient-to-r from-green-400 to-green-600 text-white px-4 py-2 rounded-full hover:from-green-500 hover:to-green-700 transition text-sm">
+                  ดูรายละเอียด
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 bg-green-50">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-green-700 mb-10 fade-in">เสียงจากผู้ใช้งาน</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {["จองคิวง่ายมาก ประทับใจสุด ๆ!", "ระบบลื่นไหล UI สวยมากๆ", "ทีมงานพัฒนาดีจริง ๆ มีประสิทธิภาพ"].map((text, i) => (
+              <div key={i} className="p-6 bg-white rounded-xl shadow-md">
+                <p className="text-gray-700 italic">"{text}"</p>
+                <div className="mt-4 text-green-600 font-semibold">- คุณ{i === 0 ? "สมศรี" : i === 1 ? "สมชาย" : "จันทร์จ้า"}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-16 bg-green-50 text-center border-t border-green-200">
+        <h2 className="text-2xl font-bold text-green-700 mb-4 fade-in">ติดต่อเรา</h2>
+        <p className="text-gray-600 mb-6 fade-in">มีคำถามหรือข้อเสนอแนะ เรายินดีให้บริการ</p>
+        <div className="space-y-2 text-green-700 fade-in">
+          <p>📞 091-234-5678</p>
+          <p>📧 support@photoreserve.com</p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-6 text-center text-gray-500 text-sm border-t mt-10">
+        &copy; {new Date().getFullYear()} ระบบจัดการแพ็คเกจ. All rights reserved.
+      </footer>
+    </div>
+  );
+};
+
+export default HomePage;
