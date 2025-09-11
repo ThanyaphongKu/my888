@@ -34,6 +34,55 @@ const PackagePage = () => {
     { id: "portrait", name: "บุคคล", count: 2 }
   ];
 
+  // สร้าง placeholder images ที่สวยงาม
+  const createImagePlaceholder = (width = 600, height = 400, theme = "photography") => {
+    const themes = {
+      photography: {
+        bg: "linear-gradient(135deg, #10B981, #059669)",
+        text: "📸"
+      },
+      wedding: {
+        bg: "linear-gradient(135deg, #F472B6, #EC4899)",
+        text: "💑"
+      },
+      graduation: {
+        bg: "linear-gradient(135deg, #3B82F6, #2563EB)",
+        text: "🎓"
+      },
+      family: {
+        bg: "linear-gradient(135deg, #F59E0B, #D97706)",
+        text: "👨‍👩‍👧‍👦"
+      },
+      portrait: {
+        bg: "linear-gradient(135deg, #8B5CF6, #7C3AED)",
+        text: "🙂"
+      }
+    };
+    
+    const themeData = themes[theme] || themes.photography;
+    
+    return `data:image/svg+xml,${encodeURIComponent(`
+      <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <style>
+            .emoji { font-size: 48px; }
+            .title { font-family: Arial, sans-serif; font-size: 16px; fill: white; font-weight: bold; }
+          </style>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grad)"/>
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="${themeData.bg}" opacity="0.9"/>
+        <text x="50%" y="45%" text-anchor="middle" class="emoji">${themeData.text}</text>
+        <text x="50%" y="65%" text-anchor="middle" class="title">Sample Photo</text>
+      </svg>
+    `)}`;
+  };
+
   const packages = [
     {
       id: 1,
@@ -51,12 +100,19 @@ const PackagePage = () => {
       reviews: 156,
       popular: true,
       featured: true,
-      image: "/api/placeholder/600/400",
-      gallery: ["/api/placeholder/300/200", "/api/placeholder/300/200", "/api/placeholder/300/200"],
+      image: createImagePlaceholder(600, 400, "wedding"),
+      gallery: [
+        createImagePlaceholder(300, 200, "wedding"),
+        createImagePlaceholder(300, 200, "wedding"),
+        createImagePlaceholder(300, 200, "wedding")
+      ],
       features: [
         "ถ่ายภาพ 6-8 ชั่วโมง",
         "รูปดิจิทัล 300+ ภาพ",
-        "ช่างภาพมืออาชีพ 2 คน"
+        "ช่างภาพมืออาชีพ 2 คน",
+        "แต่งหน้าเจ้าสาวฟรี",
+        "เปลี่ยนชุดได้ 3 ชุด",
+        "รีทัชภาพพิเศษ 50 ภาพ"
       ],
       addons: [
         { name: "วิดีโอไฮไลท์", price: 3500 },
@@ -80,8 +136,12 @@ const PackagePage = () => {
       reviews: 89,
       popular: false,
       featured: true,
-      image: "/api/placeholder/600/400",
-      gallery: ["/api/placeholder/300/200", "/api/placeholder/300/200", "/api/placeholder/300/200"],
+      image: createImagePlaceholder(600, 400, "wedding"),
+      gallery: [
+        createImagePlaceholder(300, 200, "wedding"),
+        createImagePlaceholder(300, 200, "wedding"),
+        createImagePlaceholder(300, 200, "wedding")
+      ],
       features: [
         "ถ่ายภาพตลอดงาน (8-12 ชั่วโมง)",
         "ช่างภาพ 3 คน",
@@ -114,8 +174,12 @@ const PackagePage = () => {
       reviews: 234,
       popular: true,
       featured: false,
-      image: "/api/placeholder/600/400",
-      gallery: ["/api/placeholder/300/200", "/api/placeholder/300/200", "/api/placeholder/300/200"],
+      image: createImagePlaceholder(600, 400, "graduation"),
+      gallery: [
+        createImagePlaceholder(300, 200, "graduation"),
+        createImagePlaceholder(300, 200, "graduation"),
+        createImagePlaceholder(300, 200, "graduation")
+      ],
       features: [
         "ถ่ายภาพ 3-4 ชั่วโมง",
         "ชุดครุยให้ยืม",
@@ -148,8 +212,12 @@ const PackagePage = () => {
       reviews: 67,
       popular: false,
       featured: false,
-      image: "/api/placeholder/600/400",
-      gallery: ["/api/placeholder/300/200", "/api/placeholder/300/200", "/api/placeholder/300/200"],
+      image: createImagePlaceholder(600, 400, "family"),
+      gallery: [
+        createImagePlaceholder(300, 200, "family"),
+        createImagePlaceholder(300, 200, "family"),
+        createImagePlaceholder(300, 200, "family")
+      ],
       features: [
         "ถ่ายภาพ 4-5 ชั่วโมง",
         "รูปดิจิทัล 80+ ภาพ",
@@ -182,8 +250,12 @@ const PackagePage = () => {
       reviews: 123,
       popular: false,
       featured: true,
-      image: "/api/placeholder/600/400",
-      gallery: ["/api/placeholder/300/200", "/api/placeholder/300/200", "/api/placeholder/300/200"],
+      image: createImagePlaceholder(600, 400, "portrait"),
+      gallery: [
+        createImagePlaceholder(300, 200, "portrait"),
+        createImagePlaceholder(300, 200, "portrait"),
+        createImagePlaceholder(300, 200, "portrait")
+      ],
       features: [
         "ถ่ายภาพ 2-3 ชั่วโมง",
         "รูปดิจิทัล 40+ ภาพ",
@@ -216,8 +288,12 @@ const PackagePage = () => {
       reviews: 178,
       popular: true,
       featured: false,
-      image: "/api/placeholder/600/400",
-      gallery: ["/api/placeholder/300/200", "/api/placeholder/300/200", "/api/placeholder/300/200"],
+      image: createImagePlaceholder(600, 400, "family"),
+      gallery: [
+        createImagePlaceholder(300, 200, "family"),
+        createImagePlaceholder(300, 200, "family"),
+        createImagePlaceholder(300, 200, "family")
+      ],
       features: [
         "ถ่ายภาพ 2 ชั่วโมง",
         "รูปดิจิทัล 50+ ภาพ",
@@ -232,6 +308,229 @@ const PackagePage = () => {
         { name: "รูปเพิ่มเติม", price: 400 },
         { name: "พร็อพพิเศษ", price: 600 },
         { name: "กรอบรูปการ์ตูน", price: 800 }
+      ]
+    },
+    {
+      id: 7,
+      category: "wedding",
+      title: "แพ็คเกจเอนเกจเม้นท์",
+      subtitle: "Engagement Package",
+      description: "ถ่ายภาพหมั้นแบบเรียบง่ายแต่ความหมาย",
+      price: 5900,
+      originalPrice: 7500,
+      duration: "4 ชั่วโมง",
+      photos: "70+ ภาพดิจิทัล",
+      locations: "2 สถานที่",
+      people: "คู่รัก",
+      rating: 4.7,
+      reviews: 92,
+      popular: false,
+      featured: false,
+      image: createImagePlaceholder(600, 400, "wedding"),
+      gallery: [
+        createImagePlaceholder(300, 200, "wedding"),
+        createImagePlaceholder(300, 200, "wedding"),
+        createImagePlaceholder(300, 200, "wedding")
+      ],
+      features: [
+        "ถ่ายภาพ 4 ชั่วโมง",
+        "รูปดิจิทัล 70+ ภาพ",
+        "ช่างภาพมืออาชีพ",
+        "แต่งหน้าเบา ๆ",
+        "เปลี่ยนชุดได้ 2 ชุด",
+        "รีทัชภาพพิเศษ 20 ภาพ",
+        "รูปขนาด 5x7 จำนวน 30 ภาพ"
+      ],
+      addons: [
+        { name: "วิดีโอสั้น", price: 2500 },
+        { name: "อัลบั้มเล็ก", price: 1800 },
+        { name: "กรอบรูปคู่", price: 1200 }
+      ]
+    },
+    {
+      id: 8,
+      category: "graduation",
+      title: "แพ็คเกจรับปริญญาเบสิก",
+      subtitle: "Basic Graduation Package",
+      description: "แพ็คเกจรับปริญญาราคาประหยัด คุณภาพดี",
+      price: 2200,
+      originalPrice: 2800,
+      duration: "2 ชั่วโมง",
+      photos: "40+ ภาพดิจิทัล",
+      locations: "1 สถานที่",
+      people: "บัณฑิต + ครอบครัว",
+      rating: 4.5,
+      reviews: 145,
+      popular: false,
+      featured: false,
+      image: createImagePlaceholder(600, 400, "graduation"),
+      gallery: [
+        createImagePlaceholder(300, 200, "graduation"),
+        createImagePlaceholder(300, 200, "graduation"),
+        createImagePlaceholder(300, 200, "graduation")
+      ],
+      features: [
+        "ถ่ายภาพ 2 ชั่วโมง",
+        "รูปดิจิทัล 40+ ภาพ",
+        "ชุดครุยให้ยืม",
+        "รูปขนาด 4x6 จำนวน 20 ภาพ",
+        "ช่างภาพมืออาชีพ",
+        "แต่งหน้าเบา ๆ"
+      ],
+      addons: [
+        { name: "รูปเพิ่มเติม", price: 300 },
+        { name: "กรอบรูป", price: 500 },
+        { name: "สถานที่เพิ่ม", price: 800 }
+      ]
+    },
+    {
+      id: 9,
+      category: "family",
+      title: "แพ็คเกจครอบครัวเล็ก",
+      subtitle: "Small Family Package",
+      description: "แพ็คเกจสำหรับครอบครัวเล็ก 3-5 คน",
+      price: 3200,
+      originalPrice: 4000,
+      duration: "3 ชั่วโมง",
+      photos: "60+ ภาพดิจิทัล",
+      locations: "สตูดิโอ",
+      people: "ครอบครัว (3-5 คน)",
+      rating: 4.6,
+      reviews: 98,
+      popular: true,
+      featured: false,
+      image: createImagePlaceholder(600, 400, "family"),
+      gallery: [
+        createImagePlaceholder(300, 200, "family"),
+        createImagePlaceholder(300, 200, "family"),
+        createImagePlaceholder(300, 200, "family")
+      ],
+      features: [
+        "ถ่ายภาพ 3 ชั่วโมง",
+        "รูปดิจิทัล 60+ ภาพ",
+        "พร็อพครอบครัว",
+        "ชุดเปลี่ยนได้ 1 ชุด",
+        "รูปขนาด 5x7 จำนวน 25 ภาพ",
+        "แต่งหน้าเบา ๆ",
+        "ช่างภาพมืออาชีพ"
+      ],
+      addons: [
+        { name: "รูปเพิ่มเติม", price: 500 },
+        { name: "อัลบั้ม", price: 1200 },
+        { name: "กรอบรูป", price: 800 }
+      ]
+    },
+    {
+      id: 10,
+      category: "portrait",
+      title: "แพ็คเกจบุคคลเบสิก",
+      subtitle: "Basic Portrait Package",
+      description: "ถ่ายภาพบุคคลเบื้องต้น เหมาะสำหรับมือใหม่",
+      price: 1800,
+      originalPrice: 2200,
+      duration: "1.5 ชั่วโมง",
+      photos: "25+ ภาพดิจิทัล",
+      locations: "สตูดิโอ",
+      people: "1 คน",
+      rating: 4.4,
+      reviews: 87,
+      popular: false,
+      featured: false,
+      image: createImagePlaceholder(600, 400, "portrait"),
+      gallery: [
+        createImagePlaceholder(300, 200, "portrait"),
+        createImagePlaceholder(300, 200, "portrait"),
+        createImagePlaceholder(300, 200, "portrait")
+      ],
+      features: [
+        "ถ่ายภาพ 1.5 ชั่วโมง",
+        "รูปดิจิทัล 25+ ภาพ",
+        "แต่งหน้าเบสิก",
+        "ชุดเปลี่ยนได้ 2 ชุด",
+        "รูปขนาด 4x6 จำนวน 10 ภาพ",
+        "ไฟส่องเบสิก"
+      ],
+      addons: [
+        { name: "รูปเพิ่มเติม", price: 400 },
+        { name: "แต่งหน้าโปร", price: 800 },
+        { name: "กรอบรูป", price: 600 }
+      ]
+    },
+    {
+      id: 11,
+      category: "graduation",
+      title: "แพ็คเกจรับปริญญาโปร",
+      subtitle: "Professional Graduation Package",
+      description: "แพ็คเกจรับปริญญาระดับพรีเมียม ครบครัน",
+      price: 4800,
+      originalPrice: 6200,
+      duration: "5-6 ชั่วโมง",
+      photos: "100+ ภาพดิจิทัล",
+      locations: "3 สถานที่",
+      people: "บัณฑิต + ครอบครัว",
+      rating: 4.8,
+      reviews: 156,
+      popular: false,
+      featured: true,
+      image: createImagePlaceholder(600, 400, "graduation"),
+      gallery: [
+        createImagePlaceholder(300, 200, "graduation"),
+        createImagePlaceholder(300, 200, "graduation"),
+        createImagePlaceholder(300, 200, "graduation")
+      ],
+      features: [
+        "ถ่ายภาพ 5-6 ชั่วโมง",
+        "รูปดิจิทัล 100+ ภาพ",
+        "ชุดครุยให้ยืม",
+        "รูปขนาด 5x7 จำนวน 50 ภาพ",
+        "อัลบั้มรับปริญญา 20 หน้า",
+        "กรอบรูปพิเศษ 3 อัน",
+        "ถ่ายทั้งในและนอกอาคาร",
+        "ช่างภาพ 2 คน",
+        "แต่งหน้าโปร"
+      ],
+      addons: [
+        { name: "วิดีโอไฮไลท์", price: 2500 },
+        { name: "อัลบั้มเพิ่ม", price: 1500 },
+        { name: "กรอบรูปใหญ่", price: 1200 }
+      ]
+    },
+    {
+      id: 12,
+      category: "wedding",
+      title: "แพ็คเกจแต่งงานมินิ",
+      subtitle: "Mini Wedding Package",
+      description: "แพ็คเกจงานแต่งงานเล็ก สำหรับงานเซเรโมนี",
+      price: 8900,
+      originalPrice: 11500,
+      duration: "6 ชั่วโมง",
+      photos: "120+ ภาพดิจิทัล",
+      locations: "สถานที่จัดงาน",
+      people: "งานแต่งงานเล็ก",
+      rating: 4.7,
+      reviews: 134,
+      popular: false,
+      featured: false,
+      image: createImagePlaceholder(600, 400, "wedding"),
+      gallery: [
+        createImagePlaceholder(300, 200, "wedding"),
+        createImagePlaceholder(300, 200, "wedding"),
+        createImagePlaceholder(300, 200, "wedding")
+      ],
+      features: [
+        "ถ่ายภาพ 6 ชั่วโมง",
+        "ช่างภาพ 2 คน",
+        "รูปดิจิทัล 120+ ภาพ",
+        "วิดีโอไฮไลท์ 2-3 นาที",
+        "อัลบั้มแต่งงาน 20 หน้า",
+        "รูปขนาด 4x6 จำนวน 50 ภาพ",
+        "USB แฟลชไดรฟ์",
+        "บริการแต่งหน้าเจ้าสาวเบสิก"
+      ],
+      addons: [
+        { name: "ชั่วโมงเพิ่ม", price: 1500 },
+        { name: "อัลบั้มเพิ่ม", price: 2000 },
+        { name: "วิดีโอเต็ม", price: 5000 }
       ]
     }
   ];
@@ -492,8 +791,8 @@ const PackagePage = () => {
 
                   {/* Rating */}
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
-                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                    <span className="text-sm font-semibold">{pkg.rating}</span>
+                    <Gift className="w-4 h-4 text-emerald-500" />
+                    <span className="text-sm font-semibold">พิเศษ</span>
                   </div>
                 </div>
 
@@ -529,10 +828,9 @@ const PackagePage = () => {
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <span className="text-2xl font-bold text-emerald-600">฿{pkg.price.toLocaleString()}</span>
-                      <span className="text-gray-400 line-through ml-2">฿{pkg.originalPrice.toLocaleString()}</span>
-                    </div>
-                    <div className="text-right text-sm text-gray-500">
-                      {pkg.reviews} รีวิว
+                      {pkg.originalPrice > pkg.price && (
+                        <span className="text-gray-400 line-through ml-2">฿{pkg.originalPrice.toLocaleString()}</span>
+                      )}
                     </div>
                   </div>
 
@@ -629,18 +927,7 @@ const PackagePage = () => {
                       </div>
                     </div>
 
-                    {/* Add-ons */}
-                    <div className="mb-8">
-                      <h4 className="font-semibold text-gray-800 mb-3">บริการเสริม (เพิ่มเติม)</h4>
-                      <div className="space-y-3">
-                        {selectedPackage.addons.map((addon, idx) => (
-                          <div key={idx} className="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
-                            <span className="text-gray-700">{addon.name}</span>
-                            <span className="font-semibold text-emerald-600">+฿{addon.price.toLocaleString()}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    {/* Add-ons - ลบส่วนนี้ออก */}
                   </div>
 
                   {/* Booking Card */}
@@ -651,12 +938,16 @@ const PackagePage = () => {
                         <div className="text-3xl font-bold text-emerald-600 mb-2">
                           ฿{selectedPackage.price.toLocaleString()}
                         </div>
-                        <div className="text-gray-500 line-through">
-                          ฿{selectedPackage.originalPrice.toLocaleString()}
-                        </div>
-                        <div className="text-sm text-emerald-600 font-medium mt-1">
-                          ประหยัด ฿{(selectedPackage.originalPrice - selectedPackage.price).toLocaleString()}
-                        </div>
+                        {selectedPackage.originalPrice > selectedPackage.price && (
+                          <>
+                            <div className="text-gray-500 line-through">
+                              ฿{selectedPackage.originalPrice.toLocaleString()}
+                            </div>
+                            <div className="text-sm text-emerald-600 font-medium mt-1">
+                              ประหยัด ฿{(selectedPackage.originalPrice - selectedPackage.price).toLocaleString()}
+                            </div>
+                          </>
+                        )}
                       </div>
 
                       {/* Quick Stats */}
@@ -677,10 +968,10 @@ const PackagePage = () => {
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                            <span className="text-sm text-gray-600">คะแนน</span>
+                            <MapPin className="w-4 h-4 text-emerald-500" />
+                            <span className="text-sm text-gray-600">สถานที่</span>
                           </div>
-                          <span className="text-sm font-medium">{selectedPackage.rating}/5 ({selectedPackage.reviews} รีวิว)</span>
+                          <span className="text-sm font-medium">{selectedPackage.locations}</span>
                         </div>
                       </div>
 
@@ -695,10 +986,6 @@ const PackagePage = () => {
                         >
                           จองแพ็คเกจนี้
                         </button>
-                        <button className="w-full bg-white text-emerald-600 px-6 py-3 rounded-xl border border-emerald-200 hover:bg-emerald-50 transition-colors font-medium">
-                          <Phone className="w-4 h-4 inline mr-2" />
-                          โทรสอบถาม
-                        </button>
                       </div>
 
                       {/* Contact Info */}
@@ -708,7 +995,7 @@ const PackagePage = () => {
                           <div className="flex items-center justify-center gap-4">
                             <a href="tel:091-234-5678" className="flex items-center gap-1 text-emerald-600 hover:text-emerald-700">
                               <Phone className="w-4 h-4" />
-                              091-234-5678
+                              ติดต่อ 089-376-5232
                             </a>
                           </div>
                         </div>
@@ -769,30 +1056,6 @@ const PackagePage = () => {
                 <p className="text-gray-600">{item.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-emerald-500 to-green-500">
-        <div className="max-w-4xl mx-auto px-6 text-center text-white">
-          <div className="fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              พร้อมเก็บความทรงจำสวยงามแล้วใช่ไหม?
-            </h2>
-            <p className="text-xl mb-8 text-emerald-100">
-              ติดต่อเราวันนี้เพื่อปรึกษาและจองแพ็คเกจที่เหมาะกับคุณ
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-                <Phone className="w-5 h-5 inline mr-2" />
-                โทรสอบถาม
-              </button>
-              <button className="bg-emerald-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-emerald-700 transition-colors shadow-lg">
-                <Mail className="w-5 h-5 inline mr-2" />
-                ส่งข้อความ
-              </button>
-            </div>
           </div>
         </div>
       </section>

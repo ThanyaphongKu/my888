@@ -25,19 +25,20 @@ const PhotographyReview = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e) => {
-    if (isSubmitting || !newReview.name.trim() || !newReview.comment.trim()) return;
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 800));
-    
-    const today = new Date().toISOString().split("T")[0];
-    const updatedReview = { ...newReview, date: today };
-    setReviews([updatedReview, ...reviews]);
-    setNewReview({ name: "", rating: 5, comment: "" });
-    setIsSubmitting(false);
-  };
+const handleSubmit = async () => {
+  if (isSubmitting || !newReview.name.trim() || !newReview.comment.trim()) return;
+  setIsSubmitting(true);
+
+  // Simulate API call
+  await new Promise(resolve => setTimeout(resolve, 800));
+
+  const today = new Date().toISOString().split("T")[0];
+  const updatedReview = { ...newReview, date: today };
+  setReviews([updatedReview, ...reviews]);
+  setNewReview({ name: "", rating: 5, comment: "" });
+  setIsSubmitting(false);
+};
+
 
   const getStarDisplay = (rating, interactive = false) => {
     return Array.from({ length: 5 }, (_, i) => (
