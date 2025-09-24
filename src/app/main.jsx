@@ -18,6 +18,6 @@ import AdminPackagesPage from "../features/Admin/AdminPackagesPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App/>
+    <PackagePage/>
   </React.StrictMode>
 );
